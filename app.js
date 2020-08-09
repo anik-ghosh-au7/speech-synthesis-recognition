@@ -3,6 +3,8 @@ window.onload = () => {
     let element = document.getElementById('child');
 
     // reference - https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
+    // reference - https://www.studytonight.com/post/javascript-text-to-speech-using-speechsynthesis-interface
+
 
     var grammar = '#JSGF V1.0; grammar movements; public <key> = up | down | right | left | aap | ab | close | restart;'
     var recognition = new webkitSpeechRecognition();
