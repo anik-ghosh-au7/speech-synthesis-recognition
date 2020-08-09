@@ -21,7 +21,7 @@ body {
     background-color: rgb(1, 14, 75);
 }
 
-/* #button-container {
+#button-container {
     position: absolute;
     display: flex;
     justify-content: space-evenly;
@@ -33,7 +33,7 @@ body {
     border: 1px #000000 solid;
     box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.5);
     background-color: rgb(21, 68, 2);
-} */
+}
 
 #command {
     font-size: larger;
@@ -58,9 +58,9 @@ h4 {
     left: 74%;
 }
 
-/* button {
+button {
     background-color: #fbff0d;
-} */
+}
 
 #child {
     position: absolute;
