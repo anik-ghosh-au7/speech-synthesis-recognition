@@ -4,7 +4,7 @@ window.onload = () => {
 
     // reference - https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
 
-    var grammar = '#JSGF V1.0; grammar movements; public <key> = up | down | right | left | aap | ab;'
+    var grammar = '#JSGF V1.0; grammar movements; public <key> = up | down | right | left | aap | ab | close | reload;'
     var recognition = new webkitSpeechRecognition();
     var speechRecognitionList = new webkitSpeechGrammarList();
     speechRecognitionList.addFromString(grammar, 1);
@@ -20,11 +20,20 @@ window.onload = () => {
 
     let style = window.getComputedStyle(element);
 
-    document.getElementById('start').onclick = function() {
-        console.log('Start Button clicked!!!');
-        recognition.start();
-        console.log('Ready to receive a color command.');
-    };
+    // document.getElementById('start').onclick = function() {
+    //     console.log('Start Button clicked!!!');
+    //     recognition.start();
+    //     console.log('Ready to receive a color command.');
+    // };
+
+    // document.getElementById('stop').onclick = function() {
+    //     console.log('Stop Button clicked!!!');
+    //     recognition.abort();
+    //     console.log('Stopped receiving commands command.');
+    // };
+
+    recognition.start();
+
 
     recognition.onresult = function(event) {
         console.log('result --> ',recognition.result)
@@ -60,6 +69,16 @@ window.onload = () => {
            command.value = 'right';
            left = style.getPropertyValue('left');
            if (parseInt(left.split('px')[0]) <= 275) element.style.left = parseInt(left.split('px')[0]) + 25 + 'px';
+        }
+        else if (key == 'close') {
+            console.log('closing...');
+            command.value = 'close';
+            window.close();
+         }
+        else if (key == 'reload') {
+        console.log('reloading..');
+        command.value = 'reload';
+        location.reload();
         }
     };
     
