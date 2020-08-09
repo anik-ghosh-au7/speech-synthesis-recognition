@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Synthesis</title>
+</head>
+<body>
+    <h1>Speech Synthesis</h1>
+    <div hidden id="ringtone"></div>
+    <script>
+
+        // reference - https://www.studytonight.com/post/javascript-text-to-speech-using-speechsynthesis-interface
+        
+        function Ringtone(n) {
+            if (n >= 10) return
+            if ('speechSynthesis' in window) {
+                var msg = new SpeechSynthesisUtterance();
+                // var voices = window.speechSynthesis.getVoices();
+                // msg.voice = voices[10];
+                // voices.forEach(function(voice) {
+                //     console.log(voice.name, voice.default ? voice.default :'');
+                // });
+                msg.voiceURI = 'native';
+                var caller = 'Anik';
+                msg.volume = 2;
+                msg.rate = 0.7;
+                msg.pitch = 2;
+                msg.text = `You are getting a call from ${caller}`;
+                // msg.lang = 'en-US';
+                msg.lang = 'en';
+                window.speechSynthesis.speak(msg);
+                // msg.onend = Ringtone(++n);
+                msg.onend = setTimeout(() => {
+                    Ringtone(++n);
+                    }, 5000);
+            }else{
+                // alert("Sorry, your browser doesn't support text to speech!");
+                var sound      = document.createElement('audio');
+                sound.id       = 'audio-player';
+                sound.controls = 'controls';
+                sound.src      = 'ringtone.mp3';
+                sound.type     = 'audio/mpeg';
+                let ringtone = document.getElementById('ringtone').appendChild(sound);
+                sound.play();
+            }
+        };
+        Ringtone(0);
+    </script>
+</body>
+</html>
