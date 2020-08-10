@@ -100,15 +100,15 @@ window.onload = () => {
                 window.speechSynthesis.speak(msg);
             };
         }
-        else if (key == 'close') {
-            console.log('closing...');
-            command.value = 'close';
-            msg.text = 'closing';
-            window.speechSynthesis.speak(msg);
-            setTimeout(() => {
-                window.close();
-            }, 1000);
-         }
+        // else if (key == 'close') {
+        //     console.log('closing...');
+        //     command.value = 'close';
+        //     msg.text = 'closing';
+        //     window.speechSynthesis.speak(msg);
+        //     setTimeout(() => {
+        //         window.close();
+        //     }, 1000);
+        //  }
         else if (key == 'restart' || key == 'start' || key == 'reload') {
             console.log('restarting..');
             command.value = 'restart';
