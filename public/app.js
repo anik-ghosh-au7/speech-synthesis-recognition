@@ -41,12 +41,12 @@ window.onload = () => {
     // };
 
     // recognition.start();
+    let blink = false;
+    let spin = false;
     recognition.onresult = function(event) {
         console.log('result --> ',event.results[0][0].transcript);
         var key = event.results[0][0].transcript.split(' ')[0].toLowerCase();
         var command = document.getElementById('command');
-        var blink = false;
-        var spin = false;
 
         console.log('Result received: ' + key);
 
@@ -167,17 +167,16 @@ window.onload = () => {
             command.value = 'spin';
             msg.text = 'spinning';
             window.speechSynthesis.speak(msg);
-            if (blink) {
-                element.classList.remove("blink");
-                blink = false;
-            };
             element.classList.add("spin");
+            console.log('spin -->', spin);
         }
         else if (key == 'stop') {
             console.log('stopping spinning effect');
             command.value = 'stop';
             msg.text = 'stopping';
             window.speechSynthesis.speak(msg);
+            console.log('spin -->', spin);
+            console.log('blink -->', blink);
             if (spin) {
                 element.classList.remove("spin");
                 spin = false;
@@ -193,11 +192,8 @@ window.onload = () => {
             command.value = 'blink';
             msg.text = 'blinking';
             window.speechSynthesis.speak(msg);
-            if (spin) {
-                element.classList.remove("spin");
-                spin = false;
-            };
             element.classList.add("blink");
+            console.log('blink -->', blink);
         }
     };
     
