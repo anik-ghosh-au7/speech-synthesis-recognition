@@ -45,6 +45,8 @@ window.onload = () => {
         console.log('result --> ',event.results[0][0].transcript);
         var key = event.results[0][0].transcript.split(' ')[0].toLowerCase();
         var command = document.getElementById('command');
+        var blink = false;
+        var spin = false;
 
         console.log('Result received: ' + key);
 
@@ -160,6 +162,7 @@ window.onload = () => {
             element.style.backgroundColor = key;
         }
         else if (key == 'spin' || key === 'pin') {
+            spin = true;
             console.log('creating spinning effect');
             command.value = 'spin';
             msg.text = 'spinning';
@@ -171,17 +174,22 @@ window.onload = () => {
             command.value = 'stop';
             msg.text = 'stopping';
             window.speechSynthesis.speak(msg);
-            element.classList.remove("spin");
+            if (spin) {
+                element.classList.remove("spin");
+                spin = false;
+            };
+            if (blink) {
+                element.classList.remove("blink");
+                blink = false;
+            };
         }
         else if (key == 'blink') {
+            blink = true;
             console.log('creating blinking effect');
             command.value = 'blink';
             msg.text = 'blinking';
             window.speechSynthesis.speak(msg);
             element.classList.add("blink");
-            setTimeout(() => {
-                element.classList.remove("blink");
-            }, 5000)
         }
     };
     
