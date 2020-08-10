@@ -6,7 +6,7 @@ window.onload = () => {
     // reference - https://www.studytonight.com/post/javascript-text-to-speech-using-speechsynthesis-interface
 
 
-    var grammar = '#JSGF V1.0; grammar movements; public <key> = up | down | right | left | aap | ab | close | restart | guide | best | wait | start | reload;'
+    var grammar = '#JSGF V1.0; grammar movements; public <key> = up | down | right | left | aap | ab | close | restart | guide | best | wait | start | reload | neft | blue | red | green | yellow | black | orange | spin | blink | pin | stop;'
     var recognition = new webkitSpeechRecognition();
     var speechRecognitionList = new webkitSpeechGrammarList();
     speechRecognitionList.addFromString(grammar, 1);
@@ -19,7 +19,7 @@ window.onload = () => {
     var msg = new SpeechSynthesisUtterance();
     msg.voiceURI = 'native';
     msg.volume = 2;
-    msg.rate = 1.2;
+    msg.rate = 1;
     msg.pitch = 1.5;
     msg.lang = 'en';
     recognition.onend = function() {
@@ -74,7 +74,7 @@ window.onload = () => {
                 window.speechSynthesis.speak(msg);
             };
         }
-        else if (key == 'left' || key == 'best') {
+        else if (key == 'left' || key == 'best' || key == 'neft') {
            console.log('left');
            command.value = 'left';
            left = style.getPropertyValue('left');
@@ -116,6 +116,72 @@ window.onload = () => {
             window.speechSynthesis.speak(msg);
             element.style.bottom = 0 + 'px';
             element.style.left = 0 + 'px';
+        }
+        else if (key == 'blue') {
+            console.log('changing color to blue');
+            command.value = 'blue';
+            msg.text = 'changing color to blue';
+            window.speechSynthesis.speak(msg);
+            element.style.backgroundColor = key;
+        }
+        else if (key == 'red') {
+            console.log('changing color to red');
+            command.value = 'red';
+            msg.text = 'changing color to red';
+            window.speechSynthesis.speak(msg);
+            element.style.backgroundColor = key;
+        }
+        else if (key == 'green') {
+            console.log('changing color to green');
+            command.value = 'green';
+            msg.text = 'changing color to green';
+            window.speechSynthesis.speak(msg);
+            element.style.backgroundColor = key;
+        }
+        else if (key == 'yellow') {
+            console.log('changing color to yellow');
+            command.value = 'yellow';
+            msg.text = 'changing color to yellow';
+            window.speechSynthesis.speak(msg);
+            element.style.backgroundColor = key;
+        }
+        else if (key == 'black') {
+            console.log('changing color to black');
+            command.value = 'black';
+            msg.text = 'changing color to black';
+            window.speechSynthesis.speak(msg);
+            element.style.backgroundColor = key;
+        }
+        else if (key == 'orange') {
+            console.log('changing color to orange');
+            command.value = 'orange';
+            msg.text = 'changing color to orange';
+            window.speechSynthesis.speak(msg);
+            element.style.backgroundColor = key;
+        }
+        else if (key == 'spin' || key === 'pin') {
+            console.log('creating spinning effect');
+            command.value = 'spin';
+            msg.text = 'spinning';
+            window.speechSynthesis.speak(msg);
+            element.classList.add("spin");
+        }
+        else if (key == 'stop') {
+            console.log('stopping spinning effect');
+            command.value = 'stop';
+            msg.text = 'stopping';
+            window.speechSynthesis.speak(msg);
+            element.classList.remove("spin");
+        }
+        else if (key == 'blink') {
+            console.log('creating blinking effect');
+            command.value = 'blink';
+            msg.text = 'blinking';
+            window.speechSynthesis.speak(msg);
+            element.classList.add("blink");
+            setTimeout(() => {
+                element.classList.remove("blink");
+            }, 5000)
         }
     };
     
