@@ -167,6 +167,10 @@ window.onload = () => {
             command.value = 'spin';
             msg.text = 'spinning';
             window.speechSynthesis.speak(msg);
+            if (blink) {
+                element.classList.remove("blink");
+                blink = false;
+            };
             element.classList.add("spin");
             console.log('spin -->', spin);
         }
@@ -192,6 +196,10 @@ window.onload = () => {
             command.value = 'blink';
             msg.text = 'blinking';
             window.speechSynthesis.speak(msg);
+            if (spin) {
+                element.classList.remove("spin");
+                spin = false;
+            };
             element.classList.add("blink");
             console.log('blink -->', blink);
         }
